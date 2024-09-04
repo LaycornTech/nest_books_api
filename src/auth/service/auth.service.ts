@@ -2,12 +2,13 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { users } from 'src/lib/db';
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken';
+import User from 'src/entities/user.entity';
 // import { AuthController } from '../controllers/auth.controller';
 // import {user} from
 
 @Injectable()
 export class AuthService {
-    async signup(signupUserData: Record<string, unknown>) {
+    async signup(signupUserData: User) {
         const existingUser = users.find((u) => u.email === signupUserData.email )
         if (existingUser) {
             throw new HttpException('User Exists!', HttpStatus.BAD_REQUEST);
@@ -16,14 +17,15 @@ export class AuthService {
         const saltRound = 10;
         const passwordHash = await hash(signupUserData.password as string, saltRound);
 
-        delete signupUserData.password;
+        // delete signupUserData.password;
         signupUserData.passwordHash = passwordHash;
+        signupUserData.password = undefined;
 
-        users.push(signupUserData);
+        users.push(signupUserData, existingUser);
         return 'User was created successfully';
     }
 
-    async signin(signinUserData: Record<string, unknown>) {
+    async signin(signinUserData: User) {
         const user = users.find((u) => u.email === signinUserData.email)
         const userPassword = signinUserData.password;
         const passwordHash = user.passwordHash;
@@ -38,7 +40,7 @@ export class AuthService {
             }
         };
 
-        const token = sign(payload, 'authsecret');
+        const token = sign(payload, 'thisisthesecret');
         return {token}
     }
 }
