@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
+import User from 'src/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -8,13 +9,13 @@ export class AuthController {
     }
 
     @Post('/signup')
-    async signup(@Body() userData: Record<string, unknown>) {
+    async signup(@Body() userData: User) {
         const message = await this.authService.signup(userData);
         return message;
     }
 
     @Post('/signin')
-    async signin(@Body() userData: Record<string, unknown>) {
+    async signin(@Body() userData: User) {
         return await this.authService.signin(userData);
     }
 
