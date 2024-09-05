@@ -29,6 +29,7 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
+<<<<<<< HEAD
     "@nestjs/event-emitter": "^2.0.4",
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mongoose": "^10.0.10",
@@ -40,6 +41,12 @@
     "bcrypt": "^5.1.1",
     "cache-manager": "^5.7.6",
     "class-transformer": "^0.5.1",
+=======
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+>>>>>>> 8d21daf785765d557c095587d6501fd42655c956
     "class-validator": "^0.14.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

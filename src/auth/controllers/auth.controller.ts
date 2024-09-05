@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
-import { Request } from "express";
+import User from 'src/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -8,10 +8,15 @@ export class AuthController {
         //
     }
 
-    @HttpCode(HttpStatus.OK)
-    @Post('signin')
-    async LogIn(@Body() signIndto: Record<string, unknown>) {  // I'm using singIndto
-        // return this.authService.signinIn(signIndto.username, signIndto.password);
+    @Post('/signup')
+    async signup(@Body() userData: User) {
+        const message = await this.authService.signup(userData);
+        return message;
+    }
+
+    @Post('/signin')
+    async signin(@Body() userData: User) {
+        return await this.authService.signin(userData);
     }
 
     
