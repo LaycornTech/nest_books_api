@@ -1,9 +1,22 @@
-import Category from "src/entities/category.entity";
-import LibraryInventory from "src/entities/book_inventory.entity";
-import { AvailabilityStatus } from "src/lib/enum/availability.enum";
-import BookInventoryBooks from "src/entities/book_inventory_books.entity";
-import { InventoryType } from "src/lib/types/type";
-export const users = [];
+// import Category from "src/entities/category.entity";
+// import LibraryInventory from "src/entities/book_inventory.entity";
+// import { AvailabilityStatus } from "src/lib/enum/availability.enum";
+// import BookInventoryBooks from "src/entities/book_inventory_books.entity";
+// import { InventoryType } from "src/lib/types/type";
+
+import { Injectable } from "@nestjs/common";
+import User from "src/entities/user.entity";
+import Users from "src/entities/user.entity";
+import { DataSource, EntityManager } from "typeorm";
+
+// @Injectable()
+// export class con{
+//     entityMan: EntityManager
+//     constructor(datasource: DataSource){
+//         this.entityMan = datasource.createEntityManager()
+//     }
+    
+// }        
 export const books = [
     {
         id: 1,
@@ -64,73 +77,74 @@ export const books = [
     
 ];
 
-let category: Category[] = [
-    {
-        name: "Technology",
-        description: "All about the latest in tech, gadgets, and software."
-    },
-    {
-        name: "Science",
-        description: "Topics related to scientific discoveries, research, and experiments."
-    },
-    {
-        name: "Health",
-        description: "Information and tips on health, wellness, and medical advancements."
-    },
-    {
-        name: "Education",
-        description: "Resources and insights on teaching, learning, and academic life."
-    },
-    {
-        name: "Entertainment",
-        description: "Updates on movies, music, games, and pop culture."
-    }
-];
+// let category: Category[] = [
+//     {
+//         name: "Technology",
+//         description: "All about the latest in tech, gadgets, and software."
+//     },
+//     {
+//         name: "Science",
+//         description: "Topics related to scientific discoveries, research, and experiments."
+//     },
+//     {
+//         name: "Health",
+//         description: "Information and tips on health, wellness, and medical advancements."
+//     },
+//     {
+//         name: "Education",
+//         description: "Resources and insights on teaching, learning, and academic life."
+//     },
+//     {
+//         name: "Entertainment",
+//         description: "Updates on movies, music, games, and pop culture."
+//     }
+// ];
 
-export let bookInventoryBooks : BookInventoryBooks[] = [
-    {
-        bookId: 1,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.BORROWED
-    },
-    {
-        bookId: 2,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.BORROWED
-    },
-    {
-        bookId: 3,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.AVAILABLE
-    },
-    {
-        bookId: 4,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.AVAILABLE
-    },
-    {
-        bookId: 5,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.AVAILABLE
-    },
-    {
-        bookId: 6,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.AVAILABLE
-    },
-    {
-        bookId: 7,
-        bookInventoryId: 1,
-        availability_status: AvailabilityStatus.AVAILABLE
-    }
-];
+// export let bookInventoryBooks : BookInventoryBooks[] = [
+//     {
+//         bookId: 1,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.BORROWED
+//     },
+//     {
+//         bookId: 2,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.BORROWED
+//     },
+//     {
+//         bookId: 3,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.AVAILABLE
+//     },
+//     {
+//         bookId: 4,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.AVAILABLE
+//     },
+//     {
+//         bookId: 5,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.AVAILABLE
+//     },
+//     {
+//         bookId: 6,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.AVAILABLE
+//     },
+//     {
+//         bookId: 7,
+//         bookInventoryId: 1,
+//         availability_status: AvailabilityStatus.AVAILABLE
+//     }
+// ];
 
-export let booksInventory : LibraryInventory[] = [
-    {
-        name: 'book Inventory',
-        type: InventoryType.Book,
-        quantity: 7,
-    }
-];
+// export let booksInventory : LibraryInventory[] = [
+//     {
+//         name: 'book Inventory',
+//         type: InventoryType.Book,
+//         quantity: 7,
+//     }
+// ];
 
-export const categories = [];
+// export const categories = [];
+export let users: Users[]

@@ -1,20 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import Category from './category.entity';
+import BookInventoryBooks from './book_inventory_books.entity';
+import User from './user.entity';
 
-@Injectable()
+// @Injectable()
+@Entity()
 export default class Book {
-    id: number;
+   
+    @PrimaryGeneratedColumn({type: "bigint"})
+    id: string;
+
+    @Column({type: "varchar"})
     title: string;
-    categoryId: number;
+    @Column({type: "varchar"})
     author: String;
+    @Column({type: "varchar"})
     description: String;
+
+    // @Column({type: "year"})
+    @Column({type: "date"})
     publication_year: Number
 
-    constructor(title:string, categoryId:number, author:string, description:string, publication_year:Number){
-        this.id = 0;
-        this.title = title;
-        this.categoryId = categoryId;
-        this.author = author;
-        this.description = description;
-        this.publication_year = publication_year
-    }
+    @Column({ type: 'bigint', nullable: true })
+    userId: string; //not needed
+
+
+    @Column({type: "numeric"})
+    @OneToOne(() => Category, cat=> cat.id)
+    categoryId: Category[]
+
+    @OneToMany(()=>BookInventoryBooks, bib=> bib.bookInventoryId)
+    bookInvBookIdfk: BookInventoryBooks[];
+
+    @ManyToOne(()=>User, (user)=> user.book)
+    @JoinColumn({ name: 'userId' })
+    user: User[];
 }

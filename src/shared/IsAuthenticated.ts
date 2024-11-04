@@ -15,7 +15,6 @@ export class IsAuthenticated implements CanActivate {
   private checkUserAccess(context: ExecutionContext) {
     const userData = this.getContextData(
       context,
-      'userData',
     ) as AuthTokenPayload;
     const isAuthenticated = !!userData && !!userData.user.id;
 
@@ -24,7 +23,6 @@ export class IsAuthenticated implements CanActivate {
 
   private getContextData(
     context: ExecutionContext,
-    dataProp: 'userData' | 'apiData',
   ) {
     const req = context.switchToHttp().getRequest() as PlatformRequest;
     const authPayload = req.authPayload;

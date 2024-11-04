@@ -1,3 +1,7 @@
+
+
+
+
 export enum InventoryType {
     Book = "book"
 }
@@ -8,6 +12,6 @@ export interface PlatformRequest extends Request {
   
   export interface AuthTokenPayload {
     user: {
-        id: string;
+        id: number;
     }
   }

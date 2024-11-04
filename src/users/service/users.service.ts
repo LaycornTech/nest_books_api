@@ -1,11 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import User from 'src/entities/user.entity';
-
-// id: number;
-//     firstName: string;
-//     lastname: string;
-//     email: string;
-//     passwordHash: string;
 
 @Injectable()
 export class UsersService {
@@ -15,19 +8,20 @@ export class UsersService {
             firstName: "Jamiu",
             lastname: "Yusuf",
             email: "joy@yahoo.com",
-            passwordHash: "plpop"
+            password: "plpop"
         },
         {
             id: 2,
             firstName: "Mafooor",
             lastname: "Niggax",
             email: "rema@yahoo.com",
-            passwordHash: "luyrnm"
+            password: "luyrnm"
         }
         
 ];
 
-    async findOne(username: string): Promise<User | undefined>{
-        return this.users.find(user => user.firstName === username)
+
+async findOne(email: string): Promise<object>{
+        return this.users.find(user => user.email === email)
     }
 }

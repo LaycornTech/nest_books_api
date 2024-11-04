@@ -5,8 +5,8 @@ import { UsersService } from '../service/users.service';
 export class UsersController {
     constructor(private user: UsersService){}
 
-    @Get(":name")
-    finingOneUser(@Param() params:any){
-        return this.user.findOne(params.name)
+    @Get(":id")
+    findingOneUser(@Param() params:any){
+        return this.user.findOne(params.id)
     }
 }

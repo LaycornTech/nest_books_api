@@ -3,12 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcrypt';
 import { AuthTokenPayload } from 'src/lib/types/type';
+import { DataSource, EntityManager } from 'typeorm';
 
 @Injectable()
 export class SharedService {
-    constructor(private config: ConfigService, private jwtService: JwtService,) {
-      //
-    }
+  
+    constructor(private config: ConfigService, private jwtService: JwtService ){}
+     
     async hashPassword(data: string | Buffer) {
         const saltRounds = Number(this.config.get('HASH_SALT_ROUNDS') || 10);
         const hashedPassword = await hash(data, saltRounds);
@@ -19,7 +20,7 @@ export class SharedService {
         const payload = await this.jwtService.verify(token, {
           secret: 'thisisthesecret'
         });
-        return payload;
+        return payload;  
       }
     
       signPayload(
